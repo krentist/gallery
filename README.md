@@ -1,6 +1,6 @@
 # [photos.agarun.com](https://photos.agarun.com)
 
-My photography portfolio with galleries, tags, folders, and a globe 🌎
+My photography portfolio with galleries, tags, folders, and a spinning globe 🌎
 
 # Setup
 
