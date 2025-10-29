@@ -1,3 +1,5 @@
+"use client";
+
 import dynamic from 'next/dynamic';
 import { getAlbum, getAlbums } from '@/lib/api';
 import Nav from '@/lib/nav';
