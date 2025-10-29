@@ -1,3 +1,4 @@
+// tailwind.config.js
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -8,10 +9,11 @@ const config: Config = {
     './src/lib/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
-    fontFamily: {
-      sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui']
-    },
     extend: {
+      fontFamily: {
+        // This makes 'ABCOtto' the default sans-serif font for your site
+        sans: ['ABCOtto', 'sans-serif'], // <--- Use your new font here!
+      },
       spacing: {
         '2.5': '0.875rem'
       },

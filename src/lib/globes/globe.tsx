@@ -9,7 +9,6 @@ import { geoGraticule10 } from 'd3-geo';
 import * as topojson from 'topojson-client';
 import { useWindowSize } from '@/hooks/use-window-size';
 import { Album, AlbumTitle, types } from '@/types/albums';
-import { titleToSlug } from '@/lib/api/slug';
 import Link from 'next/link';
 import { AlbumCard } from './card';
 
@@ -430,9 +429,9 @@ function Globe({ albums }: { albums: Array<Album> }) {
         customThreeObjectUpdate={customThreeObjectUpdate}
       />
 
-      <section className="content-container grow text-3xl">
+      <section className="content-container grow text-xl">
         <h1 className="font-bold mb-12 sm:mb-20 text-center md:text-left">
-          Aaron Agarunov
+          Kyle Hui
         </h1>
 
         <ul
@@ -452,7 +451,7 @@ function Globe({ albums }: { albums: Array<Album> }) {
                 }}
               >
                 <Link
-                  href={`/${titleToSlug(album.title)}`}
+                  href={`/${album.slug}`}
                   className="hover:text-gray-500"
                 >
                   {album.title}
@@ -466,7 +465,7 @@ function Globe({ albums }: { albums: Array<Album> }) {
       {activeAlbum && <AlbumCard album={activeAlbum} />}
 
       <footer className={`tracking-tight content`}>
-        <div className="text-3xl text-center md:text-right">
+        <div className="text-xl text-center md:text-right">
           <p className="m-0 p-0">&copy; {new Date().getFullYear()}</p>
         </div>
       </footer>

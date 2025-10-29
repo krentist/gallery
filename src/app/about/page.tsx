@@ -71,9 +71,9 @@ async function AboutPage() {
           w-full relative overflow-hidden`}
       >
         <section className="z-20 relative max-w-96">
-          <h1 className="font-bold text-4xl tracking-tight">Aaron Agarunov</h1>
+          <h1 className="font-bold text-4xl tracking-tight">kyle hui</h1>
           <p className="text-2xl text-gray-700 font-light">
-            <span className="text-gray-300">✦</span> Photography Portfolio
+            <span className="text-gray-300">✦</span> gallery
           </p>
 
           <p className="mt-20 mb-6 text-lg">{`

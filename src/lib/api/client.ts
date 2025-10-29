@@ -7,6 +7,7 @@ import {
   FolderPhotosResponseSchema,
   FolderResponseSchema
 } from '@/types/api';
+
 export class Client extends BaseClient {
   albums = new AlbumsClient(this.baseUrl);
   album(slug: string) {
@@ -28,6 +29,7 @@ query {
   photoGalleryCollection {
     items {
       title
+      slug  # ADDED: Fetch the new slug field for use in links
       color
       type
       description
@@ -59,12 +61,13 @@ export class AlbumClient extends BaseClient {
   }
 
   async get() {
-    const title = this.slug;
+    // MODIFIED: Define the GraphQL query with a variable ($slug)
     const query = `
-query {
-  photoGalleryCollection(where: { title: "${title}" }) {
+query GetAlbumBySlug($slug: String!) {
+  photoGalleryCollection(where: { slug: $slug }, limit: 1) {
     items {
       title
+      slug
       color
       type
       description
@@ -90,9 +93,14 @@ query {
   }
 }`;
 
+    // MODIFIED: Pass the slug as a 'variables' object
+    const variables = {
+      slug: this.slug.toLowerCase() // Ensure the slug passed is consistently lowercase
+    };
+
     const response = await this.request(z.string(), AlbumPhotosResponseSchema, {
       method: 'POST',
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, variables }), // Pass both query and variables
       next: { tags: ['albums', 'photos'] }
     });
     return response;
@@ -175,7 +183,12 @@ export class FolderClient extends BaseClient {
   }
 
   async get() {
-    const title = this.slug;
+    // This part for folders is still using title_contains.
+    // If you plan to use slugs for folders too, you'll need to
+    // add a 'slug' field to your 'Photo Folders' content model in Contentful
+    // and apply a similar change here.
+    const title = this.slug; // Keep as title for now as per original code
+
     const query = `
 query {
   photoFoldersCollection(where: { title_contains: "${title}" }) {

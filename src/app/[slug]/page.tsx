@@ -37,7 +37,7 @@ async function AlbumPage({ params: { slug } }: { params: { slug: string } }) {
             <LocationIcon />
           </div>
           <div className="flex items-end justify-between gap-24">
-            <h1 className="font-normal text-2xl text-gray-600 mt-4 min-w-32">
+            <h1 className="font-normal text-base text-gray-600 mt-4 min-w-32">
               {title}
             </h1>
             <div

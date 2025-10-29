@@ -9,13 +9,13 @@ const sansSerifFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Aaron Agarunov',
-  description: 'Photography Portfolio',
+  title: 'Kyle Hui',
+  description: 'photo gallery',
   openGraph: {
-    title: 'Aaron Agarunov',
-    description: 'Photography Portfolio',
+    title: 'Kyle Hui',
+    description: 'photo gallery',
     url: 'https://photos.agarun.com',
-    siteName: "Aaron Agarunov's Photography Portfolio",
+    siteName: "Kyle Hui's Photography Portfolio",
     images: [
       {
         url: 'https://images.ctfassets.net/hgydmrrpr52m/51698HSeL6XwsGGkNoevym/fe4b55fbcb4431a6a75f14e6b2ebeb6b/meta_tag_1.jpg',
@@ -28,9 +28,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aaron Agarunov',
-    description: 'Photography Portfolio',
-    creator: '@agarun',
+    title: 'Kyle Hui',
+    description: 'PhotographyPortfolio ',
     images: [
       'https://images.ctfassets.net/hgydmrrpr52m/51698HSeL6XwsGGkNoevym/fe4b55fbcb4431a6a75f14e6b2ebeb6b/meta_tag_1.jpg'
     ]

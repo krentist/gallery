@@ -13,6 +13,7 @@ export type AlbumTitle = z.infer<typeof AlbumTitleSchema>;
 
 export const AlbumSchema = z.object({
   title: AlbumTitleSchema,
+  slug: z.string(),  // Added slug field
   description: z.string().nullable(),
   date: z.string().nullable(),
   lat: z.number(),
