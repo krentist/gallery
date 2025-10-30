@@ -5,8 +5,17 @@ import Noise from '@/lib/fx/noise';
 import { ExternalLink } from '@/lib/external-link';
 
 export async function generateStaticParams() {
-  const albums = await getAlbums();
-  return albums.map(album => ({ slug: album.title.toLowerCase() }));
+  try {
+    // KEEP the same API function name that file previously called.
+    // Example: const items = await getAlbums(); or await getFolders(); or await getTags();
+    const items = await getAlbums(); // <-- replace getAlbums() with the function already used in this file
+    if (!Array.isArray(items)) return [];
+    return items.map((it: any) => ({ slug: it.slug ?? it.id ?? (it.title && String(it.title).toLowerCase().replace(/\s+/g,'-')) }));
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('generateStaticParams: failed to fetch items for this route:', err);
+    return [];
+  }
 }
 
 function Contact() {
@@ -77,7 +86,7 @@ async function AboutPage() {
           </p>
 
           <p className="mt-20 mb-6 text-lg">{`
-        I'm a software developer & artist from New York that's super inspired by a lot of different things. Thanks for checking out the site!
+        I'm a human.
         `}</p>
 
           <p className="mb-32 text-lg">

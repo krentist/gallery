@@ -4,8 +4,17 @@ import Grid from '@/lib/images/pig-grid';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
-  const folders = await getFolders();
-  return folders.map(folder => ({ slug: titleToSlug(folder.title) }));
+  try {
+    // KEEP the same API function name that file previously called.
+    // Example: const items = await getAlbums(); or await getFolders(); or await getTags();
+    const items = await getFolders(); // <-- replace getAlbums() with the function already used in this file
+    if (!Array.isArray(items)) return [];
+    return items.map((it: any) => ({ slug: it.slug ?? it.id ?? (it.title && String(it.title).toLowerCase().replace(/\s+/g,'-')) }));
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('generateStaticParams: failed to fetch items for this route:', err);
+    return [];
+  }
 }
 
 async function Folder({ params: { slug } }: { params: { slug: string } }) {

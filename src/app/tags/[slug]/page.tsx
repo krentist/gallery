@@ -6,13 +6,19 @@ const Masonry = dynamic(() => import('@/lib/images/masonry'), {
   ssr: false
 });
 
+// ...existing code...
 export async function generateStaticParams() {
-  const start = 2015;
-  const end = new Date().getFullYear();
-  return Array.from({ length: end - start + 1 }, (_, i) => ({
-    slug: (start + i).toString()
-  }));
+  try {
+    const items = await getAlbums(); // <-- replace getAlbums() with the actual API call used by this file
+    if (!Array.isArray(items)) return [];
+    return items.map((it: any) => ({ slug: it.slug ?? it.id ?? (it.title && String(it.title).toLowerCase().replace(/\s+/g,'-')) }));
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('generateStaticParams: failed to fetch items for this route:', err);
+    return [];
+  }
 }
+// ...existing code...
 
 async function Tag({ params: { slug } }: { params: { slug: string } }) {
   const [albums, photos] = await Promise.all([getAlbums(), getPhotos(slug)]);
