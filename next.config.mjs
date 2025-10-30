@@ -1,8 +1,4 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: ['images.ctfassets.net', 'downloads.ctfassets.net']
-  }
+export default {
+  reactStrictMode: true,
+  // removed `output: 'export'` so dynamic routes (like /[slug]) do not require generateStaticParams
 };
-
-export default nextConfig;
