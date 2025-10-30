@@ -1,0 +1,32 @@
+// ...existing code...
+import TagsClient from './TagsClient';
+
+export async function generateStaticParams() {
+  // If you already have logic here (to return available slugs), copy it in.
+  // Example placeholder — replace with your existing implementation if you have one:
+  return [];
+}
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  // Server-side helper: replace this with your real server fetch to get tags for the slug.
+  async function getTagsForSlug(slug: string): Promise<string[]> {
+    // Example placeholder: return [] so build won't fail.
+    // Replace with real fetch or DB read if you have one, e.g.:
+    // const res = await fetch(`https://.../api/tags?slug=${slug}`);
+    // return await res.json();
+    return [];
+  }
+
+  const initialTags = await getTagsForSlug(params.slug);
+
+  return (
+    <main>
+      {/* Your existing server-side markup can stay here. */}
+      <h1 className="text-2xl font-bold mb-4">Slug: {params.slug}</h1>
+
+      {/* Render the client component for any interactive/tag hook logic */}
+      <TagsClient initialTags={initialTags} />
+    </main>
+  );
+}
+// ...existing code...
